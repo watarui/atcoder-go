@@ -8,6 +8,16 @@ import (
 	"strings"
 )
 
+// 各桁の和
+func sum(i int) int {
+	sum := 0
+	for i > 0 {
+		sum += i % 10
+		i /= 10
+	}
+	return sum
+}
+
 func main() {
 	reader := bufio.NewReader(os.Stdin)
 	input, _ := reader.ReadString('\n')
@@ -18,52 +28,13 @@ func main() {
 	a, _ := strconv.Atoi(inputs[1])
 	b, _ := strconv.Atoi(inputs[2])
 
-	sum := 0
+	total := 0
 	for i := 1; i <= n; i++ {
-		// 1桁
-		if i < 10 {
-			if i >= a && i <= b {
-				sum = sum + i
-			}
-		}
-		// 2桁
-		if i >= 10 && i < 100 {
-			n1 := i % 10
-			n2 := i / 10
-			n_sum := n1 + n2
-			if n_sum >= a && n_sum <= b {
-				sum = sum + i
-			}
-		}
-		// 3桁
-		if i >= 100 && i < 1000 {
-			n1 := i % 10
-			n2 := (i / 10) % 10
-			n3 := i / 100
-			n_sum := n1 + n2 + n3
-			if n_sum >= a && n_sum <= b {
-				sum = sum + i
-			}
-		}
-		// 4桁
-		if i >= 1000 && i < 10000 {
-			n1 := i % 10
-			n2 := (i / 10) % 10
-			n3 := (i / 100) % 10
-			n4 := i / 1000
-			n_sum := n1 + n2 + n3 + n4
-			if n_sum >= a && n_sum <= b {
-				sum = sum + i
-			}
-		}
-		// 5桁
-		if i == 10000 {
-			n_sum := 1
-			if n_sum >= a && n_sum <= b {
-				sum = sum + i
-			}
+		sum := sum(i)
+		if sum >= a && sum <= b {
+			total += i
 		}
 	}
 
-	fmt.Printf("%d", sum)
+	fmt.Printf("%d", total)
 }

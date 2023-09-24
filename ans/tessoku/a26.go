@@ -5,7 +5,7 @@ import (
 	"math"
 )
 
-func isPrime(n int, div int) bool {
+func isPrime(n, div int) bool {
 	if div == 1 {
 		return true
 	}

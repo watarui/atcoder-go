@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"math"
+)
 
 func isPrime(n int, div int) bool {
 	if div == 1 {
@@ -30,7 +33,7 @@ func main() {
 		var X int
 		fmt.Scan(&X)
 
-		if isPrime2(X) {
+		if isPrime(X, int(math.Sqrt(float64(X)))) {
 			fmt.Println("Yes")
 		} else {
 			fmt.Println("No")

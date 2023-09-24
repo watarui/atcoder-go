@@ -20,9 +20,23 @@ func gcd(a, b int) int {
 	return x
 }
 
+func gcd2(a, b int) int {
+	if b == 0 {
+		return a
+	}
+	if a == 0 {
+		return b
+	}
+	if a >= b {
+		return gcd2(a%b, b)
+	} else {
+		return gcd2(a, b%a)
+	}
+}
+
 func main() {
 	var A, B int
 	fmt.Scan(&A, &B)
 
-	fmt.Println(gcd(A, B))
+	fmt.Println(gcd2(A, B))
 }

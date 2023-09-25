@@ -10,11 +10,7 @@ func abs(a int) int {
 }
 
 func min(a, b int) int {
-	if a < b {
-		return a
-	} else {
-		return b
-	}
+	return int(math.Min(float64(a), float64(b)))
 }
 
 func main() {

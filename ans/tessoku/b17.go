@@ -21,15 +21,15 @@ func reverse(s []int) []int {
 	return s
 }
 
-func restore(current int, dp, h, V []int) []int {
+func restore(current int, dp, h, V []int, f func(int) int) []int {
 	V = append(V, current)
 	if current == 1 {
 		return V
 	}
-	if dp[current-1]+abs(h[current]-h[current-1]) == dp[current] {
-		return restore(current-1, dp, h, V)
+	if dp[current-1]+f(h[current]-h[current-1]) == dp[current] {
+		return restore(current-1, dp, h, V, f)
 	} else {
-		return restore(current-2, dp, h, V)
+		return restore(current-2, dp, h, V, f)
 	}
 }
 
@@ -51,7 +51,7 @@ func main() {
 	}
 
 	// 復元
-	ans := reverse(restore(N, dp, h, []int{}))
+	ans := reverse(restore(N, dp, h, []int{}, abs))
 
 	al := len(ans)
 	fmt.Println(al)
